@@ -10,8 +10,30 @@ let myInputEl = document.querySelector(".my-search-input");
 // Function Calls
 
 // Function Defintions
+function fetchByAuthor(input) {
+    fetch("https://poetrydb.org/author")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    });
+}
+
+function fetchByTitle(input) {
+   fetch("https://poetrydb.org/title") 
+   .then(response => response.json())
+    .then(data => {
+        console.log(data)  
+    });
+}
+
 function chooseFetch(search, input) {
-    
+    if (search === "author") {
+        fetchByAuthor(input);
+        console.log("fetch author");
+    } else {
+        fetchByTitle(input);
+        console.log("fetch title");
+    }
 }
 
 function getUserInput() {
@@ -37,8 +59,8 @@ mySearchBtnEl.addEventListener("click", getUserInput);
 
 
 
-// read and store the input from the radio button
-// read and store the typed text for search
+// read and store the input from the radio button***
+// read and store the typed text for search***
 // On submit, fetches by author or by title
 // If more than one result, display modal with choices.
 // If just one result display poem
