@@ -1,16 +1,23 @@
 // Poetry Project - script.js
 
 // Global Definitions
-let searchType = "";
 
 // Element Selectors
 let mySearchBtnEl = document.querySelector(".my-search-button");
 let myRadioEl = document.getElementsByName("radio-button");
+let myInputEl = document.querySelector(".my-search-input");
 
 // Function Calls
 
 // Function Defintions
+function chooseFetch(search, input) {
+    
+}
+
 function getUserInput() {
+    let searchType = "";
+    let textInput = "";
+
     console.log("I got here");
 
     // loop through radio buttons and look for checked button
@@ -21,7 +28,8 @@ function getUserInput() {
         }
     }
 
-    
+    textInput = (myInputEl.value);
+    chooseFetch(searchType, textInput);
 }
 
 // Event Handlers
