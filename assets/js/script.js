@@ -11,11 +11,14 @@ let myInputEl = document.querySelector(".my-search-input");
 
 // Function Defintions
 function fetchByAuthor(input) {
-    fetch("https://poetrydb.org/author")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-    });
+ 
+        let apiSearch = "https://poetrydb.org/author,poemcount/"+input+";1/author,title,lines.json";
+        fetch(apiSearch)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        });
+
 }
 
 function fetchByTitle(input) {
@@ -35,6 +38,7 @@ function chooseFetch(search, input) {
         console.log("fetch title");
     }
 }
+
 
 function getUserInput() {
     let searchType = "";
