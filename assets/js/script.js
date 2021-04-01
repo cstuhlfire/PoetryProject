@@ -1,6 +1,7 @@
 // Poetry Project - script.js
 
 // Global Definitions
+let dataObject={};
 
 // Element Selectors
 let mySearchBtnEl = document.querySelector(".my-search-button");
@@ -16,7 +17,9 @@ function fetchByAuthor(input) {
         fetch(apiSearch)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            let dataObject=data;
+            console.log(dataObject);
+
         });
 
 }
