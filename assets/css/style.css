@@ -1,5 +1,5 @@
 #poem-text {
-    overflow-y: scroll;
-    height: 300px;;
-    width: 600px;
+    overflow: auto;
+    height: 330px;;
+    /* width: 600px; */
 }
