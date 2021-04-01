@@ -22,8 +22,10 @@ function fetchByAuthor(input) {
 }
 
 function fetchByTitle(input) {
-   fetch("https://poetrydb.org/title") 
-   .then(response => response.json())
+
+    let apiSearch = "https://poetrydb.org/title,poemcount/"+input+";1/author,title,lines.json";
+    fetch(apiSearch)
+    .then(response => response.json())
     .then(data => {
         console.log(data)  
     });
