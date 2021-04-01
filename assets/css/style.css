@@ -1,11 +1,18 @@
 #poem-text {
     overflow: auto;
-    height: 330px;;
+    height: 330px;
     /* width: 600px; */
 }
 
 #search-results {
     overflow: auto;
-    height: 530px;;
+    height: 530px;
     /* width: 600px; */
+}
+
+#italic{
+    font-style: italic;
+    font-size: medium;
+    color: hsl(171,100%,41%);
+
 }

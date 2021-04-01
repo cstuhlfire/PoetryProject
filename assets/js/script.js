@@ -35,6 +35,8 @@ function fetchByTitle(input) {
     .then((response) => response.json())
     .then((data) => {
       displayPoem(data);
+
+      displaySearchResults(data);
     });
 }
 
@@ -106,8 +108,3 @@ function getUserInput() {
 // Event Handlers
 mySearchBtnEl.addEventListener("click", getUserInput);
 
-// read and store the input from the radio button***
-// read and store the typed text for search***
-// On submit, fetches by author or by title***
-// If more than one result, display modal with choices.
-// If just one result display poem
