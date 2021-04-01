@@ -48,8 +48,13 @@ function chooseFetch(search, input) {
 
 function displayPoem(myObject){
     let i=0;
-    let myEl = document.createElement("p");
+    let maxLines = 35;
+    
+    // clear the poem
+    myDisplayEl.innerHTML = "";
+    
     // display title
+    let myEl = document.createElement("p");
     myEl.textContent = myObject[i].title;
     myDisplayEl.appendChild(myEl);
 
@@ -58,16 +63,14 @@ function displayPoem(myObject){
     myEl.textContent = myObject[i].author;
     myDisplayEl.appendChild(myEl);
 
-    // display lines
-    
+    // display lines  
     let myLines= myObject[i].lines;
-    for (let i = 0; i < myLines.length; i++) {
+    for (let i = 0; i < maxLines; i++) {
         myEl = document.createElement("p");
         myEl.textContent = myLines[i];
         myDisplayEl.appendChild(myEl);
         
     }
-    console.log(myObject);
 }
 
 
