@@ -8,13 +8,15 @@ let mySearchBtnEl = document.querySelector(".my-search-button");
 let myRadioEl = document.getElementsByName("radio-button");
 let myInputEl = document.querySelector(".my-search-input");
 let myDisplayEl = document.getElementById("poem-text");
+let myTitleEl = document.getElementById("poem-title");
+let myAuthorEl = document.getElementById("poem-author");
 
 // Function Calls
 
 // Function Defintions
 function fetchByAuthor(input) {
  
-        let apiSearch = "https://poetrydb.org/author,poemcount/"+input+";1/author,title,lines.json";
+        let apiSearch = "https://poetrydb.org/author/"+input+"/author,title,lines.json";
         fetch(apiSearch)
         .then(response => response.json())
         .then(data => {
@@ -27,11 +29,12 @@ function fetchByAuthor(input) {
 
 function fetchByTitle(input) {
 
-    let apiSearch = "https://poetrydb.org/title,poemcount/"+input+";1/author,title,lines.json";
+    let apiSearch = "https://poetrydb.org/title/"+input+"/author,title,lines.json";
+
     fetch(apiSearch)
     .then(response => response.json())
     .then(data => {
-        
+ 
         displayPoem(data);
     });
 }
@@ -48,24 +51,23 @@ function chooseFetch(search, input) {
 
 function displayPoem(myObject){
     let i=0;
-    let maxLines = 35;
     
     // clear the poem
     myDisplayEl.innerHTML = "";
     
     // display title
-    let myEl = document.createElement("p");
-    myEl.textContent = myObject[i].title;
-    myDisplayEl.appendChild(myEl);
+    //let myEl = document.createElement("p");
+    myTitleEl.textContent = myObject[i].title;
+    //myDisplayEl.appendChild(myEl);
 
     // display author
-    myEl = document.createElement("p");
-    myEl.textContent = myObject[i].author;
-    myDisplayEl.appendChild(myEl);
+    //myEl = document.createElement("p");
+    myAuthorEl.textContent = myObject[i].author;
+    //myDisplayEl.appendChild(myEl);
 
     // display lines  
     let myLines= myObject[i].lines;
-    for (let i = 0; i < maxLines; i++) {
+    for (let i = 0; i < myLines.length; i++) {
         myEl = document.createElement("p");
         myEl.textContent = myLines[i];
         myDisplayEl.appendChild(myEl);

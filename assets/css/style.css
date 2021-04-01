@@ -3,3 +3,9 @@
     height: 330px;;
     /* width: 600px; */
 }
+
+#search-results {
+    overflow: auto;
+    height: 530px;;
+    /* width: 600px; */
+}
