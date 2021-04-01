@@ -7,6 +7,7 @@
 let mySearchBtnEl = document.querySelector(".my-search-button");
 let myRadioEl = document.getElementsByName("radio-button");
 let myInputEl = document.querySelector(".my-search-input");
+let myDisplayEl = document.getElementById("poem-text");
 
 // Function Calls
 
@@ -46,8 +47,27 @@ function chooseFetch(search, input) {
 }
 
 function displayPoem(myObject){
+    let i=0;
+    let myEl = document.createElement("p");
+    // display title
+    myEl.textContent = myObject[i].title;
+    myDisplayEl.appendChild(myEl);
 
-console.log(myObject);
+    // display author
+    myEl = document.createElement("p");
+    myEl.textContent = myObject[i].author;
+    myDisplayEl.appendChild(myEl);
+
+    // display lines
+    
+    let myLines= myObject[i].lines;
+    for (let i = 0; i < myLines.length; i++) {
+        myEl = document.createElement("p");
+        myEl.textContent = myLines[i];
+        myDisplayEl.appendChild(myEl);
+        
+    }
+    console.log(myObject);
 }
 
 
