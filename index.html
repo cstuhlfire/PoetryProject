@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <section class="hero is-small is-primary">
@@ -29,21 +29,30 @@
               <div class="control">
                 <!-- added radio buttons -->
                 <label class="radio is-size-6">
-                  <input type="radio" name="radio-button" value="author" checked/>
+                  <input
+                    type="radio"
+                    name="radio-button"
+                    value="author"
+                    checked
+                  />
                   Author
                 </label>
-                <label  class="radio is-size-6">
-                  <input type="radio" name="radio-button" value="title"/>
+                <label class="radio is-size-6">
+                  <input type="radio" name="radio-button" value="title" />
                   Title
                 </label>
                 <!-- added text search box -->
-                <input class="input is-normal my-search-input" type="text" placeholder="Search" />
-    
+                <input
+                  class="input is-normal my-search-input"
+                  type="text"
+                  placeholder="Search"
+                />
+
                 <!-- added submit button -->
-                <button class="button is-normal my-search-button">Search</button>
+                <button class="button is-normal my-search-button">
+                  Search
+                </button>
               </div>
-
-
             </article>
 
             <article class="tile is-child box">
@@ -51,26 +60,28 @@
               <p>words</p>
             </article>
           </div>
-          
+
           <!-- Poem Display Section -->
           <div class="tile is-parent selected-text">
             <article class="tile is-child box poem-select">
               <p id="poem-title" class="title is-size-4">Poem</p>
               <p id="poem-author" class="subtitle is-size-6">Author</p>
-              <p id="italic" class= "subtitle is-size-6">Highlight a word to see the definition</p>
+              <p id="italic" class="subtitle is-size-6">
+                Highlight a word to see the definition
+              </p>
               <div id="poem-text"></div>
             </article>
           </div>
-
         </div>
 
         <!-- Definition Display Section -->
         <div class="tile is-parent">
           <article class="tile is-child box">
             <p class="title is-size-4">Definition</p>
-            <p class="subtitle is-size-6">Word</p>
+            <p id="look-word" class="subtitle is-size-6">Word</p>
             <div class="content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+              <p id="def-text" ></p>
+              <p id="def-text2" ></p>
             </div>
           </article>
         </div>
@@ -82,8 +93,7 @@
           <div class="content">
             <p class="title is-size-4">Search Results</p>
             <p id="poem-count" class="subtitle is-size-6"></p>
-            <div id="search-results" class="content search-hover">
-            </div>
+            <div id="search-results" class="content search-hover"></div>
           </div>
         </article>
       </div>
