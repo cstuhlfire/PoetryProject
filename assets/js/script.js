@@ -1,6 +1,7 @@
 // Poetry Project - script.js
 
 // Global Definitions
+let wordArray = [];
 
 // Element Selectors
 let mySearchBtnEl = document.querySelector(".my-search-button");
@@ -14,7 +15,7 @@ let myPoemCountEl = document.getElementById("poem-count");
 let mySelectedTextEl = document.querySelector(".selected-text");
 let lookWordEl = document.getElementById("look-word");
 let defTextEl = document.getElementById("def-text");
-
+let wordListEl = document.getElementById("word-list");
 
 // Function Calls
 init();
@@ -145,6 +146,12 @@ function displayDefinition(lookUpWord, definition, partOfSpeech) {
  
 }
 
+function addWordArray(word){
+  wordArray.unshift(word);
+  console.log(wordArray);
+
+}
+
 //selected word from the window
 function getSelectedText() {
   let selectedText = "";
@@ -153,6 +160,9 @@ function getSelectedText() {
   if (window.getSelection) {
     selectedText = window.getSelection().toString();
     fetchDefinition(selectedText);
+    // add new word to word list array
+    addWordArray(selectedText);
+
   }
 }
 
