@@ -84,7 +84,7 @@ function chooseFetch(search, input) {
 
 function displaySearchResults(myObject) {
   mySearchResultsEl.innerHTML = "";
-  console.log(myObject);
+  // console.log(myObject);
 
   myPoemCountEl.textContent = myObject.length + " Poems Found";
 
@@ -159,6 +159,9 @@ function displayDefinition(lookUpWord, definition, partOfSpeech) {
 }
 
 function displayWordList(){
+  // Clear HTML
+  wordListEl.innerHTML = "";
+
   //Creating word list
   for (let i = 0; i < wordArray.length; i++) {
     let myEl = document.createElement("p");
@@ -168,9 +171,22 @@ function displayWordList(){
 }
 
 function addWordArray(word){
-  wordListEl.innerHTML = "";
-  wordArray.unshift(word);
+  let found = 0;
+
+  found = wordArray.indexOf(word);
+  if (found < 0) {
+    // If the city is not in the array, add it
+    wordArray.unshift(word);
+  } else {
+    // If the city is already in the array, move it to the first element
+    wordArray.splice(found, 1);
+    wordArray.unshift(word);
+  }
+
   wordArray.splice(maxWords);
+
+  // wordListEl.innerHTML = "";
+  // wordArray.unshift(word);
  
   displayWordList();
   storeWordList();
