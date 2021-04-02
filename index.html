@@ -14,40 +14,40 @@
     <section class="hero is-small is-primary">
       <div class="hero-body">
         <p class="title">Poetry Explorer</p>
-        <p class="subtitle">Poetry Search Dashboard</p>
+        <p class="subtitle is-size-6">Poetry Search Dashboard</p>
       </div>
     </section>
 
     <div class="tile is-ancestor">
       <div class="tile is-vertical is-8">
         <div class="tile">
-          <div class="tile is-parent is-vertical">
+          <div class="tile is-parent is-vertical is-4">
             <article class="tile is-child box">
-              <p class="title">Search Area</p>
-              <p class="subtitle">Search by author or title.</p>
+              <p class="title is-size-4">Search Area</p>
+              <p class="subtitle is-size-6">Search by author or title.</p>
 
               <div class="control">
                 <!-- added radio buttons -->
-                <label class="radio">
+                <label class="radio is-size-6">
                   <input type="radio" name="radio-button" value="author" checked/>
                   Author
                 </label>
-                <label  class="radio">
+                <label  class="radio is-size-6">
                   <input type="radio" name="radio-button" value="title"/>
                   Title
                 </label>
                 <!-- added text search box -->
-                <input class="input is-medium my-search-input" type="text" placeholder="Search" />
+                <input class="input is-normal my-search-input" type="text" placeholder="Search" />
     
                 <!-- added submit button -->
-                <button class="button is-medium my-search-button">Search</button>
+                <button class="button is-normal my-search-button">Search</button>
               </div>
 
 
             </article>
 
             <article class="tile is-child box">
-              <p class="title">Recently Searched Words</p>
+              <p class="title is-size-4">Recently Searched Words</p>
               <p>words</p>
             </article>
           </div>
@@ -55,9 +55,9 @@
           <!-- Poem Display Section -->
           <div class="tile is-parent">
             <article class="tile is-child box">
-              <p id="poem-title" class="title">Poem</p>
-              <p id="poem-author" class="subtitle">Author</p>
-              <p id="italic" class= "subtitle">Highlight a word to see the definition</p>
+              <p id="poem-title" class="title is-size-4">Poem</p>
+              <p id="poem-author" class="subtitle is-size-6">Author</p>
+              <p id="italic" class= "subtitle is-size-6">Highlight a word to see the definition</p>
               <div id="poem-text"></div>
             </article>
           </div>
@@ -67,8 +67,8 @@
         <!-- Definition Display Section -->
         <div class="tile is-parent">
           <article class="tile is-child box">
-            <p class="title">Definition</p>
-            <p class="subtitle">Word</p>
+            <p class="title is-size-4">Definition</p>
+            <p class="subtitle is-size-6">Word</p>
             <div class="content">
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
             </div>
@@ -80,8 +80,8 @@
       <div class="tile is-parent">
         <article class="tile is-child box">
           <div class="content">
-            <p class="title">Search Results</p>
-            <p id="poem-count" class="subtitle"></p>
+            <p class="title is-size-4">Search Results</p>
+            <p id="poem-count" class="subtitle is-size-6"></p>
             <div id="search-results" class="content">
             </div>
           </div>

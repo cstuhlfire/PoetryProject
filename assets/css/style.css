@@ -1,12 +1,12 @@
 #poem-text {
     overflow: auto;
-    height: 330px;
+    height: 300px;
     /* width: 600px; */
 }
 
 #search-results {
     overflow: auto;
-    height: 530px;
+    height: 500px;
     /* width: 600px; */
 }
 
