@@ -25,6 +25,16 @@ init();
 function init() {
   // Call function to fetch and display random poem on open.
   fetchRandom();
+
+  // Get recent search words from localStorage
+  let tempArray = JSON.parse(localStorage.getItem(storageArray));
+
+  if (tempArray !== null && tempArray.length > 0) {
+    wordArray = tempArray;
+
+    // Render recent searches and details
+    displayWordList();
+  }
 }
 
 function fetchRandom() {
@@ -147,18 +157,22 @@ function displayDefinition(lookUpWord, definition, partOfSpeech) {
  
 }
 
-function addWordArray(word){
-  wordListEl.innerHTML = "";
-  wordArray.unshift(word);
-  wordArray.splice(5);
- 
+function displayWordList(){
   //Creating word list
   for (let i = 0; i < wordArray.length; i++) {
     let myEl = document.createElement("p");
     myEl.textContent = wordArray[i];
     wordListEl.appendChild(myEl);
   }
-    storeWordList();
+}
+
+function addWordArray(word){
+  wordListEl.innerHTML = "";
+  wordArray.unshift(word);
+  wordArray.splice(5);
+ 
+  displayWordList();
+  storeWordList();
 
 }
 
@@ -167,8 +181,6 @@ function storeWordList() {
   // stringify the Array and store it in localStorage
   localStorage.setItem(storageArray, JSON.stringify(wordArray));
 }
-
-
 
 //selected word from the window
 function getSelectedText() {
