@@ -5,27 +5,39 @@
 #poem-text {
     overflow: auto;
     height: 290px;
-    /* width: 600px; */
 }
 
 #search-results {
     overflow: auto;
     height: 520px;
-    /* width: 600px; */
 }
 
 #italic{
     font-style: italic;
     font-size: medium;
     color: var(--light-green);
-    /* color: hsl(171,100%,41%); */
-
 }
 
 .search-hover :hover {
     background-color: var(--light-green);
+    cursor: pointer;
 }
 
 .poem-select ::selection {
     background-color: var(--light-green);
+}
+
+.word-hover :hover {
+    background-color: var(--light-green);
+    cursor: pointer;
+}
+
+#word-list {
+    overflow: auto;
+    height: 150px;
+}
+
+#def-text {
+    overflow: auto;
+    height: 48px;
 }

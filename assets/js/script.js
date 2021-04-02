@@ -3,6 +3,8 @@
 // Global Definitions
 let wordArray = [];
 let storageArray ="storageArray";
+let maxWords = 25;
+let titleSearch = true;
 
 // Element Selectors
 let mySearchBtnEl = document.querySelector(".my-search-button");
@@ -25,6 +27,16 @@ init();
 function init() {
   // Call function to fetch and display random poem on open.
   fetchRandom();
+
+  // Get recent search words from localStorage
+  let tempArray = JSON.parse(localStorage.getItem(storageArray));
+
+  if (tempArray !== null && tempArray.length > 0) {
+    wordArray = tempArray;
+
+    // Render recent searches and details
+    displayWordList();
+  }
 }
 
 function fetchRandom() {
@@ -41,12 +53,17 @@ function fetchRandom() {
 function fetchByAuthor(input) {
   let apiSearch =
     "https://poetrydb.org/author/" + input + "/author,title,lines.json";
+
   fetch(apiSearch)
     .then((response) => response.json())
     .then((data) => {
       // Display first poem and a list of search results
-      displayPoem(data);
-      displaySearchResults(data);
+      if (data.length > 0) {
+        displayPoem(data);
+        displaySearchResults(data);      
+      } else {
+        return;
+      }
     });
 }
 
@@ -58,8 +75,14 @@ function fetchByTitle(input) {
     .then((response) => response.json())
     .then((data) => {
       // Display first poem and a list of search results
-      displayPoem(data);
-      displaySearchResults(data);
+      if (data.length > 0) {
+        displayPoem(data);
+        if (titleSearch) {
+          displaySearchResults(data);      
+        }
+
+        titleSearch = true;
+      }
     });
 }
 
@@ -73,7 +96,7 @@ function chooseFetch(search, input) {
 
 function displaySearchResults(myObject) {
   mySearchResultsEl.innerHTML = "";
-  console.log(myObject);
+  //console.log(myObject);
 
   myPoemCountEl.textContent = myObject.length + " Poems Found";
 
@@ -118,6 +141,7 @@ function getUserInput() {
 
   textInput = myInputEl.value;
   chooseFetch(searchType, textInput);
+  myInputEl.value = "";
 }
 
 //fetch the definition and the part of speech
@@ -134,10 +158,19 @@ function fetchDefinition(lookUpWord) {
   )
     .then((response) => response.json())
     .then((data) => {
-      definition = data[0].shortdef[0];
-      partOfSpeech = data[0].fl;
 
-      displayDefinition(lookUpWord, definition, partOfSpeech);
+      if (data.length > 0 && data !== undefined) {
+        //console.log(typeof(data));
+        definition = data[0].shortdef[0];
+        partOfSpeech = data[0].fl;
+  
+        displayDefinition(lookUpWord, definition, partOfSpeech);
+        // add new word to word list array
+        addWordArray(lookUpWord);
+        
+      } else {
+        return;
+      }
     });
 }
 
@@ -147,18 +180,38 @@ function displayDefinition(lookUpWord, definition, partOfSpeech) {
  
 }
 
-function addWordArray(word){
+function displayWordList(){
+  // Clear HTML
   wordListEl.innerHTML = "";
-  wordArray.unshift(word);
-  wordArray.splice(5);
- 
+
   //Creating word list
   for (let i = 0; i < wordArray.length; i++) {
     let myEl = document.createElement("p");
     myEl.textContent = wordArray[i];
     wordListEl.appendChild(myEl);
   }
-    storeWordList();
+}
+
+function addWordArray(word){
+  let found = 0;
+
+  found = wordArray.indexOf(word);
+  if (found < 0) {
+    // If the city is not in the array, add it
+    wordArray.unshift(word);
+  } else {
+    // If the city is already in the array, move it to the first element
+    wordArray.splice(found, 1);
+    wordArray.unshift(word);
+  }
+
+  wordArray.splice(maxWords);
+
+  // wordListEl.innerHTML = "";
+  // wordArray.unshift(word);
+ 
+  displayWordList();
+  storeWordList();
 
 }
 
@@ -168,8 +221,6 @@ function storeWordList() {
   localStorage.setItem(storageArray, JSON.stringify(wordArray));
 }
 
-
-
 //selected word from the window
 function getSelectedText() {
   let selectedText = "";
@@ -177,13 +228,41 @@ function getSelectedText() {
   // window.getSelection
   if (window.getSelection) {
     selectedText = window.getSelection().toString();
-    fetchDefinition(selectedText);
-    // add new word to word list array
-    addWordArray(selectedText);
+    selectedText = selectedText.trim();
+
+    if (selectedText.length > 0 ) {
+      fetchDefinition(selectedText);
+    }
 
   }
+}
+
+function getSelectedPoem(event) {
+  let idx = 0;
+  let str = "";
+  let title = [];
+  let firstItem = 0;
+
+  str = event.target.textContent;
+  idx = str.indexOf(",");
+
+  if (idx > -1) { 
+    title = str.split(',') 
+  } 
+
+  title = title[firstItem];
+  if(title.length > 0) {
+    titleSearch = false;
+    fetchByTitle(title);
+  }
+}
+
+function getSelectedWord(event) {
+  fetchDefinition(event.target.textContent);
 }
 
 // Event Handlers
 mySearchBtnEl.addEventListener("click", getUserInput);
 mySelectedTextEl.addEventListener("mouseup", getSelectedText);
+mySearchResultsEl.addEventListener("click", getSelectedPoem);
+wordListEl.addEventListener("click", getSelectedWord);
