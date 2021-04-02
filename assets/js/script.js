@@ -123,20 +123,28 @@ function getUserInput() {
   chooseFetch(searchType, textInput);
 }
 
-
+//fetch the definition and the part of speech
 function fetchDefinition(lookUpWord) {
   let apiKey = "53fce5b3-3370-4472-9dab-9d3c8647943e";
+  let definition="";
+  let partOfSpeech="";
 
 fetch("https://www.dictionaryapi.com/api/v3/references/collegiate/json/"+lookUpWord+"?key="+apiKey)
     .then(response => response.json())
     .then(data => {
-        console.log(data[0].shortdef[0]);
-        console.log(data[0].fl);
+        definition=data[0].shortdef[0];
+        partOfSpeech=data[0].fl;
+
+        displayDefinition(definition, partOfSpeech)
     });
 }
 
+function displayDefinition(definition, partOfSpeech) {
+  
+}
 
 
+//selected word from the window
 function getSelectedText() {
   let selectedText = "";
 
