@@ -14,7 +14,6 @@ let myPoemCountEl = document.getElementById("poem-count");
 let mySelectedTextEl = document.querySelector(".selected-text");
 let lookWordEl = document.getElementById("look-word");
 let defTextEl = document.getElementById("def-text");
-let defText2El = document.getElementById("def-text2");
 
 
 // Function Calls
@@ -142,9 +141,8 @@ function fetchDefinition(lookUpWord) {
 
 function displayDefinition(lookUpWord, definition, partOfSpeech) {
   lookWordEl.textContent = lookUpWord;
-  defTextEl.
-
-
+  defTextEl.textContent = "("+partOfSpeech+") "+ definition;
+ 
 }
 
 //selected word from the window
