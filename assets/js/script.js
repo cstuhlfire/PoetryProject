@@ -2,6 +2,7 @@
 
 // Global Definitions
 let wordArray = [];
+let storageArray ="storageArray";
 
 // Element Selectors
 let mySearchBtnEl = document.querySelector(".my-search-button");
@@ -149,6 +150,7 @@ function displayDefinition(lookUpWord, definition, partOfSpeech) {
 function addWordArray(word){
   wordListEl.innerHTML = "";
   wordArray.unshift(word);
+  wordArray.splice(5);
  
   //Creating word list
   for (let i = 0; i < wordArray.length; i++) {
@@ -156,8 +158,17 @@ function addWordArray(word){
     myEl.textContent = wordArray[i];
     wordListEl.appendChild(myEl);
   }
+    storeWordList();
 
 }
+
+//local storage function 
+function storeWordList() {
+  // stringify the Array and store it in localStorage
+  localStorage.setItem(storageArray, JSON.stringify(wordArray));
+}
+
+
 
 //selected word from the window
 function getSelectedText() {
