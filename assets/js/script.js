@@ -3,6 +3,7 @@
 // Global Definitions
 let wordArray = [];
 let storageArray ="storageArray";
+let maxWords = 10;
 
 // Element Selectors
 let mySearchBtnEl = document.querySelector(".my-search-button");
@@ -169,7 +170,7 @@ function displayWordList(){
 function addWordArray(word){
   wordListEl.innerHTML = "";
   wordArray.unshift(word);
-  wordArray.splice(5);
+  wordArray.splice(maxWords);
  
   displayWordList();
   storeWordList();
