@@ -13,8 +13,28 @@ let mySearchResultsEl = document.getElementById("search-results");
 let myPoemCountEl = document.getElementById("poem-count");
 
 // Function Calls
+init();
 
 // Function Defintions
+function init(){
+  // Call function to fetch and display random poem on open.
+  fetchRandom();
+}
+
+function fetchRandom() {
+  let apiSearch = "https://poetrydb.org/random/1.json";
+
+  // Fetch and display random poem
+  fetch(apiSearch)
+    .then((response) => response.json())
+    .then((data) => {
+      displayPoem(data);
+
+    });
+}
+
+
+
 function fetchByAuthor(input) {
   let apiSearch =
     "https://poetrydb.org/author/" + input + "/author,title,lines.json";
@@ -59,12 +79,8 @@ mySearchResultsEl.innerHTML = "";
   for (let i = 0; i < myObject.length; i++) {
         let myEl = document.createElement("p");
         myEl.textContent = myObject[i].title+", "+myObject[i].author;
-        mySearchResultsEl.appendChild(myEl);
-
-
-        
+        mySearchResultsEl.appendChild(myEl);     
     }
-
 }
 
 function displayPoem(myObject) {
