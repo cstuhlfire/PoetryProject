@@ -36,3 +36,8 @@
     overflow: auto;
     height: 150px;
 }
+
+#def-text {
+    overflow: auto;
+    height: 48px;
+}
