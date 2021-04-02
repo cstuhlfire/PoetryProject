@@ -11,6 +11,7 @@ let myTitleEl = document.getElementById("poem-title");
 let myAuthorEl = document.getElementById("poem-author");
 let mySearchResultsEl = document.getElementById("search-results");
 let myPoemCountEl = document.getElementById("poem-count");
+let mySelectedTextEl = document.querySelector(".selected-text");
 
 // Function Calls
 init();
@@ -33,8 +34,6 @@ function fetchRandom() {
 
     });
 }
-
-
 
 function fetchByAuthor(input) {
   let apiSearch =
@@ -124,6 +123,15 @@ function getUserInput() {
   chooseFetch(searchType, textInput);
 }
 
+function getSelectedText() {
+  let selectedText = "";
+
+  // window.getSelection
+  if (window.getSelection) {
+    selectedText = window.getSelection();
+  }
+}
+
 // Event Handlers
 mySearchBtnEl.addEventListener("click", getUserInput);
-
+mySelectedTextEl.addEventListener("mouseup", getSelectedText);
