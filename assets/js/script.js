@@ -28,6 +28,7 @@ function fetchRandom() {
   fetch(apiSearch)
     .then((response) => response.json())
     .then((data) => {
+
       displayPoem(data);
 
     });
@@ -41,22 +42,26 @@ function fetchByAuthor(input) {
   fetch(apiSearch)
     .then((response) => response.json())
     .then((data) => {
+
+      // Display first poem and a list of search results
       displayPoem(data);
-
       displaySearchResults(data);
+      
     });
-}
-
-function fetchByTitle(input) {
-  let apiSearch =
+  }
+  
+  function fetchByTitle(input) {
+    let apiSearch =
     "https://poetrydb.org/title/" + input + "/author,title,lines.json";
-
-  fetch(apiSearch)
+    
+    fetch(apiSearch)
     .then((response) => response.json())
     .then((data) => {
+      
+      // Display first poem and a list of search results
       displayPoem(data);
-
       displaySearchResults(data);
+
     });
 }
 
@@ -90,11 +95,9 @@ function displayPoem(myObject) {
   myDisplayEl.innerHTML = "";
 
   // display title
-
   myTitleEl.textContent = myObject[i].title;
 
   // display author
-
   myAuthorEl.textContent = myObject[i].author;
 
   // display lines
