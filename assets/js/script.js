@@ -3,7 +3,7 @@
 // Global Definitions
 let wordArray = [];
 let storageArray ="storageArray";
-let maxWords = 10;
+let maxWords = 25;
 let titleSearch = true;
 
 // Element Selectors
@@ -96,7 +96,7 @@ function chooseFetch(search, input) {
 
 function displaySearchResults(myObject) {
   mySearchResultsEl.innerHTML = "";
-  console.log(myObject);
+  //console.log(myObject);
 
   myPoemCountEl.textContent = myObject.length + " Poems Found";
 
@@ -160,7 +160,7 @@ function fetchDefinition(lookUpWord) {
     .then((data) => {
 
       if (data.length > 0 && data !== undefined) {
-        console.log(typeof(data));
+        //console.log(typeof(data));
         definition = data[0].shortdef[0];
         partOfSpeech = data[0].fl;
   
@@ -257,7 +257,12 @@ function getSelectedPoem(event) {
   }
 }
 
+function getSelectedWord(event) {
+  fetchDefinition(event.target.textContent);
+}
+
 // Event Handlers
 mySearchBtnEl.addEventListener("click", getUserInput);
 mySelectedTextEl.addEventListener("mouseup", getSelectedText);
 mySearchResultsEl.addEventListener("click", getSelectedPoem);
+wordListEl.addEventListener("click", getSelectedWord);
