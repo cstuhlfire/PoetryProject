@@ -52,12 +52,17 @@ function fetchRandom() {
 function fetchByAuthor(input) {
   let apiSearch =
     "https://poetrydb.org/author/" + input + "/author,title,lines.json";
+
   fetch(apiSearch)
     .then((response) => response.json())
     .then((data) => {
       // Display first poem and a list of search results
-      displayPoem(data);
-      displaySearchResults(data);
+      if (data.length > 0) {
+        displayPoem(data);
+        displaySearchResults(data);      
+      } else {
+        return;
+      }
     });
 }
 
@@ -69,8 +74,12 @@ function fetchByTitle(input) {
     .then((response) => response.json())
     .then((data) => {
       // Display first poem and a list of search results
-      displayPoem(data);
-      displaySearchResults(data);
+      if (data.length > 0) {
+        displayPoem(data);
+        displaySearchResults(data);      
+      } else {
+        return;
+      }
     });
 }
 
@@ -145,10 +154,19 @@ function fetchDefinition(lookUpWord) {
   )
     .then((response) => response.json())
     .then((data) => {
-      definition = data[0].shortdef[0];
-      partOfSpeech = data[0].fl;
 
-      displayDefinition(lookUpWord, definition, partOfSpeech);
+      // console.log(data);
+      if (data.length > 0 && data !== undefined) {
+        definition = data[0].shortdef[0];
+        partOfSpeech = data[0].fl;
+  
+        displayDefinition(lookUpWord, definition, partOfSpeech);
+        // add new word to word list array
+        addWordArray(lookUpWord);
+        
+      } else {
+        return;
+      }
     });
 }
 
@@ -206,9 +224,11 @@ function getSelectedText() {
   // window.getSelection
   if (window.getSelection) {
     selectedText = window.getSelection().toString();
-    fetchDefinition(selectedText);
-    // add new word to word list array
-    addWordArray(selectedText);
+    selectedText = selectedText.trim();
+
+    if (selectedText.length > 0 ) {
+      fetchDefinition(selectedText);
+    }
 
   }
 }
