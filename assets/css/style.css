@@ -20,6 +20,7 @@
 
 .search-hover :hover {
     background-color: var(--light-green);
+    cursor: pointer;
 }
 
 .poem-select ::selection {
@@ -28,6 +29,7 @@
 
 .word-hover :hover {
     background-color: var(--light-green);
+    cursor: pointer;
 }
 
 #word-list {

@@ -4,6 +4,7 @@
 let wordArray = [];
 let storageArray ="storageArray";
 let maxWords = 10;
+let titleSearch = true;
 
 // Element Selectors
 let mySearchBtnEl = document.querySelector(".my-search-button");
@@ -76,9 +77,11 @@ function fetchByTitle(input) {
       // Display first poem and a list of search results
       if (data.length > 0) {
         displayPoem(data);
-        displaySearchResults(data);      
-      } else {
-        return;
+        if (titleSearch) {
+          displaySearchResults(data);      
+        }
+
+        titleSearch = true;
       }
     });
 }
@@ -93,7 +96,7 @@ function chooseFetch(search, input) {
 
 function displaySearchResults(myObject) {
   mySearchResultsEl.innerHTML = "";
-  // console.log(myObject);
+  console.log(myObject);
 
   myPoemCountEl.textContent = myObject.length + " Poems Found";
 
@@ -138,6 +141,7 @@ function getUserInput() {
 
   textInput = myInputEl.value;
   chooseFetch(searchType, textInput);
+  myInputEl.value = "";
 }
 
 //fetch the definition and the part of speech
@@ -155,8 +159,8 @@ function fetchDefinition(lookUpWord) {
     .then((response) => response.json())
     .then((data) => {
 
-      // console.log(data);
       if (data.length > 0 && data !== undefined) {
+        console.log(typeof(data));
         definition = data[0].shortdef[0];
         partOfSpeech = data[0].fl;
   
@@ -233,6 +237,27 @@ function getSelectedText() {
   }
 }
 
+function getSelectedPoem(event) {
+  let idx = 0;
+  let str = "";
+  let title = [];
+  let firstItem = 0;
+
+  str = event.target.textContent;
+  idx = str.indexOf(",");
+
+  if (idx > -1) { 
+    title = str.split(',') 
+  } 
+
+  title = title[firstItem];
+  if(title.length > 0) {
+    titleSearch = false;
+    fetchByTitle(title);
+  }
+}
+
 // Event Handlers
 mySearchBtnEl.addEventListener("click", getUserInput);
 mySelectedTextEl.addEventListener("mouseup", getSelectedText);
+mySearchResultsEl.addEventListener("click", getSelectedPoem);
