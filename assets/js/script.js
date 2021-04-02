@@ -123,12 +123,27 @@ function getUserInput() {
   chooseFetch(searchType, textInput);
 }
 
+
+function fetchDefinition(lookUpWord) {
+  let apiKey = "53fce5b3-3370-4472-9dab-9d3c8647943e";
+
+fetch("https://www.dictionaryapi.com/api/v3/references/collegiate/json/"+lookUpWord+"?key="+apiKey)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data[0].shortdef[0]);
+        console.log(data[0].fl);
+    });
+}
+
+
+
 function getSelectedText() {
   let selectedText = "";
 
   // window.getSelection
   if (window.getSelection) {
-    selectedText = window.getSelection();
+    selectedText = window.getSelection().toString();
+    fetchDefinition(selectedText);
   }
 }
 
