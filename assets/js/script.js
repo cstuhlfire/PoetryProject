@@ -147,8 +147,15 @@ function displayDefinition(lookUpWord, definition, partOfSpeech) {
 }
 
 function addWordArray(word){
+  wordListEl.innerHTML = "";
   wordArray.unshift(word);
-  console.log(wordArray);
+ 
+  //Creating word list
+  for (let i = 0; i < wordArray.length; i++) {
+    let myEl = document.createElement("p");
+    myEl.textContent = wordArray[i];
+    wordListEl.appendChild(myEl);
+  }
 
 }
 
